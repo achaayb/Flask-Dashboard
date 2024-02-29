@@ -19,6 +19,12 @@ class EntityDB:
         new_entity = Entity(name, company, city)
         self.entities.append(new_entity)
         return new_entity
+    
+    def paginate(self, page, per_page = 10):
+        start = (page - 1) * per_page
+        end = start + per_page
+        paginated_entities = self.entities[start:end]
+        return paginated_entities
 
     def get_entity_by_id(self, entity_id):
         return next(
