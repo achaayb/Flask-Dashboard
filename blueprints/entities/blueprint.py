@@ -68,5 +68,6 @@ def delete_entity(id):
         flash("Failed", "warning")
         return redirect(url_for('entities.entities'))
     
+    flash("Deleted", "info")
     return redirect(url_for('entities.entities'))
 

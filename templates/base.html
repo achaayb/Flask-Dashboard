@@ -241,27 +241,6 @@
   </footer>
 </div>
 
-<div id="delete-modal" class="modal">
-  <div class="modal-background jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirm action</p>
-      <button class="delete jb-modal-close" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <p>This will permanently delete <b>Some Object</b></p>
-      <p>This is sample modal</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button jb-modal-close">Cancel</button>
-        <form id="delete-entity-form" action="{{ url_for('delete_entity') }}" method="POST">
-          <button class="button is-danger jb-modal-close" type="submit">Delete</button>
-        </form>
-    </footer>
-  </div>
-  <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
-</div>
-
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
