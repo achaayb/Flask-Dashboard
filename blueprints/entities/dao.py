@@ -1,7 +1,8 @@
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
 
-class Entity():
+
+class Entity:
     def __init__(self, name=None, company=None, city=None):
         self.id = str(uuid4())
         self.name = name
@@ -9,7 +10,8 @@ class Entity():
         self.city = city
         self.created_at = str(datetime.now())
 
-class EntityDB():
+
+class EntityDB:
     def __init__(self):
         self.entities = []
 
@@ -19,7 +21,9 @@ class EntityDB():
         return new_entity
 
     def get_entity_by_id(self, entity_id):
-        return next((entity for entity in self.entities if entity.id == entity_id), None)
+        return next(
+            (entity for entity in self.entities if entity.id == entity_id), None
+        )
 
     def update_entity(self, entity_id, name, company, city):
         entity = self.get_entity_by_id(entity_id)
@@ -36,5 +40,6 @@ class EntityDB():
             self.entities.remove(entity)
             return True
         return False
+
 
 entity_dao = EntityDB()

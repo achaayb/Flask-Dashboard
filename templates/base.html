@@ -114,14 +114,16 @@
           </a>
         </li>
       </ul>
-      <p class="menu-label">Examples</p>
+      <p class="menu-label">Routes</p>
       <ul class="menu-list">
+        {% for route in config.SIDEBAR_ROUTES %}
           <li>
-            <a href="{{ url_for('entities.entities') }}" class="has-icon">
+            <a href="{{ route['url'] }}" class="has-icon">
               <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
-              <span class="menu-item-label">Tables</span>
+              <span class="menu-item-label">{{ route['label'] }}</span>
             </a>
           </li>
+        {% endfor %}
         <!-- <li>
           <a class="has-icon has-dropdown-icon">
             <span class="icon"><i class="mdi mdi-view-list"></i></span>
