@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      <span class="icon"><i class="mdi mdi-ballot"></i></span>
+      Forms
+    </p>
+  </header>
+  <div class="card-content">
+    <form method="post" action="{{ url_for('entities.edit_entity', id=entity['id']) }}">
+      <div class="field">
+        <label class="label" for="the_name">Name</label>
+        <input type="text" name="name" class="input" value="{{ entity['name'] }}">
+      </div>
+  
+      <div class="field">
+        <label class="label" for="the_email">Company</label>
+        <input type="text" name="company" class="input" value="{{ entity['company'] }}">
+      </div>
+
+      <div class="field">
+        <label class="label" for="the_email">City</label>
+        <input type="text" name="city" class="input" value="{{ entity['city'] }}">
+      </div>
+
+      
+      <div class="field">
+        <input type="submit" class="button is-primary">
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
