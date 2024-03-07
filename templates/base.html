@@ -149,13 +149,13 @@
       <p class="menu-label">About</p>
       <ul class="menu-list">
         <li>
-          <a href="https://github.com/vikdiesel/admin-one-bulma-dashboard" target="_blank" class="has-icon">
+          <a href="https://github.com/achaayb/Flask-Dashboard" target="_blank" class="has-icon">
             <span class="icon"><i class="mdi mdi-github-circle"></i></span>
             <span class="menu-item-label">GitHub</span>
           </a>
         </li>
         <li>
-          <a href="https://justboil.me/bulma-admin-template/free-html-dashboard/" class="has-icon">
+          <a href="#" class="has-icon">
             <span class="icon"><i class="mdi mdi-help-circle"></i></span>
             <span class="menu-item-label">About</span>
           </a>
@@ -187,6 +187,10 @@
   </section>
   <section class="section is-main-section">
   
+  <!-- Start Loader -->
+  <progress id="loader" style="display: none;" class="progress is-small is-primary" max="100">15%</progress>
+  <!-- End Loader -->
+
   <!-- Start Flash -->
 
   {% with messages = get_flashed_messages(with_categories=True) %}
@@ -223,11 +227,11 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item">
-            © 2020, JustBoil.me
+            achaayb @ Cheri.dev
           </div>
           <div class="level-item">
             <a href="https://github.com/vikdiesel/admin-one-bulma-dashboard" style="height: 20px">
-              <img src="https://img.shields.io/github/v/release/vikdiesel/admin-one-bulma-dashboard?color=%23999">
+              <img src="https://img.shields.io/badge/Flask%20Dashboard-Stable-blue?link=https%3A%2F%2Fgithub.com%2Fachaayb%2FFlask-Dashboard">
             </a>
           </div>
         </div>
@@ -250,5 +254,15 @@
 
 <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
+<script>
+  const forms = document.forms;
+  for (let i = 0; i < forms.length; i++) {
+      forms[i].addEventListener('submit', function() {
+          document.getElementById('loader').style.display = 'block';
+      });
+  }
+</script>
+
 </body>
 </html>

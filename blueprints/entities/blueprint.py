@@ -18,8 +18,9 @@ def entities():
         flash("Created", "info")
         return redirect(url_for("entities.entities"))
     else:
-        entities = entity_dao.entities
-        return render_template("entities/list_view.html", entities=entities)
+        page_num = request.args.get('page', default=1, type=int)
+        page = entity_dao.paginate(page=page_num)
+        return render_template("entities/list_view.html", page=page)
 
 
 @blueprint.route("/entities/create", methods=["GET"])

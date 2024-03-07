@@ -30,26 +30,26 @@
           </tr>
           </thead>
           <tbody>
-          {% for entity in entities %}
+          {% for row in page.data %}
           <tr>
             <td >-</td>
-            <td data-label="Name">{{ entity["name"] }}</td>
-            <td data-label="Company">{{ entity["company"] }}</td>
-            <td data-label="City">{{ entity["city"] }}</td>
+            <td data-label="Name">{{ row.name }}</td>
+            <td data-label="Company">{{ row.company }}</td>
+            <td data-label="City">{{ row.city }}</td>
             <td data-label="Created">
-              <small class="has-text-grey is-abbr-like" title="Jan 8, 2020">{{ entity["created_at"] }}</small>
+              <small class="has-text-grey is-abbr-like" title="Jan 8, 2020">{{ row.created_at }}</small>
             </td>
             <td class="is-actions-cell">
               <div class="buttons is-right">
-                <a href="{{ url_for('entities.show_entity', id=entity['id']) }}" class="button is-small is-primary" type="button">
+                <a href="{{ url_for('entities.show_entity', id=row.id) }}" class="button is-small is-primary" type="button">
                   <span class="icon"><i class="mdi mdi-eye"></i></span>
                 </a>
-                <button class="button is-small is-danger jb-modal" data-target="delete-modal-{{ entity['id'] }}" type="button">
+                <button class="button is-small is-danger jb-modal" data-target="delete-modal-{{ row.id }}" type="button">
                   <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                 </button>
               </div>
             </td>
-            <div id="delete-modal-{{ entity['id'] }}" class="modal">
+            <div id="delete-modal-{{ row.id }}" class="modal">
               <div class="modal-background jb-modal-close"></div>
               <div class="modal-card">
                 <header class="modal-card-head">
@@ -62,7 +62,7 @@
                 </section>
                 <footer class="modal-card-foot">
                   <button class="button jb-modal-close">Cancel</button>
-                    <form id="delete-entity-form" action="{{ url_for('entities.delete_entity', id=entity['id']) }}" method="POST">
+                    <form id="delete-entity-form" action="{{ url_for('entities.delete_entity', id=row.id) }}" method="POST">
                       <button class="button is-danger jb-modal-close" type="submit">Delete</button>
                     </form>
                 </footer>
@@ -74,24 +74,41 @@
           </tbody>
         </table>
       </div>
+
       <div class="notification">
         <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <div class="buttons has-addons">
-                <button type="button" class="button is-active">1</button>
-                <button type="button" class="button">2</button>
-                <button type="button" class="button">3</button>
-              </div>
+            <div class="level-left">
+                <div class="level-item">
+                    <div class="buttons has-addons">
+                        {% if page.pagination.current_page > 1 %}
+                            <a href="?page=1" class="button">First</a>
+                            <a href="?page={{ page.pagination.current_page - 1 }}" class="button">Previous</a>
+                        {% endif %}
+                        
+                        {% set start_page = page.pagination.current_page - 2 if page.pagination.current_page > 3 else 1 %}
+                        {% set end_page = page.pagination.current_page + 2 if page.pagination.current_page < page.pagination.total_pages - 2 else page.pagination.total_pages %}
+                        
+                        {% for p in range(start_page, end_page + 1) %}
+                            <a href="?page={{ p }}" class="button{% if p == page.pagination.current_page %} is-active{% endif %}">
+                                {{ p }}
+                            </a>
+                        {% endfor %}
+                        
+                        {% if page.pagination.current_page < page.pagination.total_pages %}
+                            <a href="?page={{ page.pagination.current_page + 1 }}" class="button">Next</a>
+                            <a href="?page={{ page.pagination.total_pages }}" class="button">Last</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="level-right">
-            <div class="level-item">
-              <small>Page 1 of 3</small>
+            <div class="level-right">
+                <div class="level-item">
+                    <small>Page {{ page.pagination.current_page }} of {{ page.pagination.total_pages }}</small>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+
     </div>
   </div>
 </div>

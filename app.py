@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from flask import Flask, flash, render_template
 
 from blueprints.entities.blueprint import blueprint as entities_blueprint
-
 load_dotenv()
 
 app = Flask(__name__)
@@ -21,7 +20,6 @@ def configure_app():
 
 
 configure_app()
-
 
 @app.context_processor
 def inject_config():
