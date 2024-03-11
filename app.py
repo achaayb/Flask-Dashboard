@@ -26,7 +26,7 @@ def inject_config():
     return dict(config=app.config)
 
 
-@app.route("/dashboard", methods=["GET"])
+@app.route("/", methods=["GET"])
 def dashboard():
     flash("Info flash example", "info")
     flash("Warning flash example", "warning")
